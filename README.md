@@ -25,3 +25,4 @@
 - addEventListener()
 - .innerHTML
 ## Sources:
+- https://developer.mozilla.org/en-US/
