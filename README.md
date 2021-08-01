@@ -20,7 +20,6 @@
 
 - when add zipcode and feelings will return to you date and temp of your place and what you type in feelings.
 
--
 
 ## Objects:
 
