@@ -16,8 +16,15 @@ async function generateWeather(e) {
     weather = document.getElementById('zip').value;
     feelings = document.getElementById('feelings').value;
     await weatherApiRequest(baseUrl, apiKey, weather);
-    await getProjectData();
-    await SaveApiResponse();
+    getProjectData().then(data => saveApiResponse('/all',
+        {
+            temp: data,
+            date: newDate,
+            feelings: feelings.value
+        }).then(getProjectData())
+    )
+
+
 }
 
 /* Function to GET Web API Data*/
@@ -31,9 +38,9 @@ const weatherApiRequest = async (baseUrl, apiKey, weather) => {
         console.log("error", error);
     }
 }
-/* Function to POST data */
 
-const SaveApiResponse = async (request, response) => {
+/* Function to POST data */
+const saveApiResponse = async (request, response) => {
     var newData = {};
     newData.temp = temp;
     newData.date = newDate;
@@ -51,14 +58,15 @@ const SaveApiResponse = async (request, response) => {
         console.log("error", error);
     }
 };
-/* Function to GET Project Data */
-const getProjectData = async (req, res) => {
+// Function to GET Project Data
+const getProjectData = async () => {
     const header = await fetch('/all');
     try {
         data = await header.json();
         document.getElementById('date').innerHTML = data.date;
-        document.getElementById('content').innerHTML = data.feelings;
         document.getElementById('temp').innerHTML = data.temp;
+        document.getElementById('content').innerHTML = data.feelings;
+
     } catch (error) {
         console.log("error", error);
     }
