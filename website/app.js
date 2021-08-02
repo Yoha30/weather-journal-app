@@ -1,5 +1,5 @@
 /* Global Variables */
-let apiKey = "22629635062bf601100e2097235cffa5";
+const apiKey = "22629635062bf601100e2097235cffa5";
 let baseUrl = "http://api.openweathermap.org/";
 let weather;
 let feelings;
